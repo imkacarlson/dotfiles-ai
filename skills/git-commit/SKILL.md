@@ -1,6 +1,11 @@
 ---
 name: git-commit
 description: "Standard workflow for staging and committing changes in a git repo. Use when the user asks to commit, make a commit, or save changes to git."
+allowed-tools:
+  - Bash(git status*)
+  - Bash(git diff*)
+  - Bash(git log*)
+  - Bash(git add*)
 ---
 
 # Git Commit
