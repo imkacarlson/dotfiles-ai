@@ -54,7 +54,21 @@ Based on the issue details:
 - Trace code paths to understand the root cause (for bugs) or where new code should go (for features).
 - Build a thorough understanding before proposing changes.
 
-## Step 5: Determine the branch name
+## Step 5: Check if already implemented
+
+After investigating the codebase, evaluate whether the issue's described bug fix or feature already exists:
+
+- For **bugs**: Does the code already contain a fix for the described behavior? Is there a guard, validation, or corrected logic that addresses the root cause?
+- For **features**: Does the functionality described in the issue already exist in the codebase, even if named differently or located somewhere unexpected?
+
+If the issue appears to be **already implemented**:
+- Report to the user: summarize what you found, citing the specific files/functions/lines that address the issue.
+- Suggest the user close the issue (with a link), or offer to comment on the issue with your findings.
+- **Stop here.** Do not proceed to planning or making changes.
+
+If not already implemented, continue to the next step.
+
+## Step 6: Determine the branch name
 
 Check the issue labels:
 - If labeled `bug` or similar: use `fix/issue-NUMBER-short-desc`
@@ -64,14 +78,14 @@ Where `short-desc` is a 2-4 word kebab-case summary derived from the issue title
 
 Also determine the default branch by running: `git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@'`
 
-## Step 6: Present a plain-language summary
+## Step 7: Present a plain-language summary
 
 Before entering plan mode, output a conversational summary to the user:
 - What the issue is about (title + brief description in your own words)
 - What you found in the codebase (relevant files, root cause for bugs, insertion points for features)
 - Your proposed high-level approach
 
-## Step 7: Enter plan mode
+## Step 8: Enter plan mode
 
 Use the `EnterPlanMode` tool. Then write a structured plan covering:
 
@@ -82,7 +96,7 @@ Use the `EnterPlanMode` tool. Then write a structured plan covering:
    - Title: Use conventional commit format (e.g., `fix: resolve crash when...` or `feat: add support for...`)
    - Body: Description of changes with `Closes #NUMBER` to auto-close the issue
 
-## Step 8: Execute after approval
+## Step 9: Execute after approval
 
 Once the user approves the plan:
 
