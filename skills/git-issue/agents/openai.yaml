@@ -1,0 +1,4 @@
+interface:
+  display_name: "Git Issue"
+  short_description: "Turn ideas into GitHub issues with duplicate checks"
+  default_prompt: "Use -issue to draft an issue with duplicate detection and approval."
