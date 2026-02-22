@@ -1,9 +1,9 @@
 ---
-name: git-issue
-description: Create GitHub issues from rambling feature ideas when the user invokes `$git-issue`. Use this skill to detect likely duplicate open issues in the current repo, summarize the idea, propose a title, and wait for explicit approval before creating the issue.
+name: git-create-issue
+description: Create GitHub issues from rambling feature ideas when the user invokes `$git-create-issue`. Use this skill to detect likely duplicate open issues in the current repo, summarize the idea, propose a title, and wait for explicit approval before creating the issue.
 ---
 
-# Git Issue
+# Git Create Issue
 
 ## Overview
 Turn a rough idea into a well-structured GitHub issue with duplicate checks and explicit user approval before creation.

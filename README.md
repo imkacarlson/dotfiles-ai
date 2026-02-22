@@ -10,7 +10,7 @@ Both tools implement the [Agent Skills spec](https://agentskills.io). A single `
 |---|---|
 | `fix-issue` | Takes a GitHub issue, investigates the codebase, and opens a PR that closes it |
 | `git-commit` | Standard workflow for staging and committing changes |
-| `git-issue` | Turn rough ideas into structured GitHub issues with duplicate detection |
+| `git-create-issue` | Turn rough ideas into structured GitHub issues with duplicate detection |
 
 ## Setup
 
