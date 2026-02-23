@@ -215,7 +215,7 @@
     }
 
     try {
-      const response = await state.origFetch(...args);
+      const response = await state.origFetch.call(window, ...args);
       if (trace) {
         addEvent("net:fetch:response", {
           method,
