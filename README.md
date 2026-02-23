@@ -8,6 +8,7 @@ Both tools implement the [Agent Skills spec](https://agentskills.io). A single `
 
 | Skill | Description |
 |---|---|
+| `chrome-trace-listener` | Attach read-only Chrome DevTools trace listeners on desktop or Android Chrome pages and collect detailed interaction timelines |
 | `fix-issue` | Takes a GitHub issue, investigates the codebase, and opens a PR that closes it |
 | `git-commit` | Standard workflow for staging and committing changes |
 | `git-create-issue` | Turn rough ideas into structured GitHub issues with duplicate detection |

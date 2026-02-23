@@ -1,0 +1,4 @@
+interface:
+  display_name: "Chrome Trace Listener"
+  short_description: "Attach desktop/mobile DevTools trace listeners"
+  default_prompt: "Use $chrome-trace-listener in mobile mode and attach detailed trace listeners to my current page."
