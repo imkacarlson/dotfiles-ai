@@ -87,7 +87,7 @@ After approval:
 
 ## Phase 2: Desktop verification
 
-1. Ensure the dev server is running: `npm run dev &` (if not already running). [Check if the dev server is running and have the user start it in another terminal if not already running]
+1. Check if the dev server is running. If not, ask the user to start it in another terminal before continuing.
 2. Open a desktop browser via Playwright MCP tools.
 3. Navigate to the relevant page/flow.
 4. Tell the user: **"Desktop is ready. Try the flow and tell me if it works."**
