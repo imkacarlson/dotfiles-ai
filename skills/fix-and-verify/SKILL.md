@@ -81,13 +81,13 @@ Use **EnterPlanMode** and write a structured plan:
 After approval:
 1. `git checkout -b <branch-name>`
 2. Make all changes with Edit/Write tools
-3. Commit with `Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>`
+3. Use the **git-commit** skill to stage and commit the changes
 
 ---
 
 ## Phase 2: Desktop verification
 
-1. Ensure the dev server is running: `npm run dev &` (if not already running).
+1. Ensure the dev server is running: `npm run dev &` (if not already running). [Check if the dev server is running and have the user start it in another terminal if not already running]
 2. Open a desktop browser via Playwright MCP tools.
 3. Navigate to the relevant page/flow.
 4. Tell the user: **"Desktop is ready. Try the flow and tell me if it works."**
