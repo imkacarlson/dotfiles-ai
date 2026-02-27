@@ -6,17 +6,11 @@ description: >
   provides an issue number or URL to work on.
 argument-hint: "[issue-number-or-url]"
 allowed-tools:
-  - Bash
   - Read
   - Glob
   - Grep
-  - Edit
-  - Write
-  - Task
   - EnterPlanMode
   - AskUserQuestion
-  - mcp__playwright__*
-  - mcp__github__*
 ---
 
 # Fix-and-Verify Skill
@@ -110,7 +104,7 @@ After approval:
 
 ## Phase 3: Mobile verification
 
-1. Open a mobile-viewport browser via Playwright MCP (Pixel 7 / touch-enabled).
+1. Open a mobile-viewport browser via Playwright MCP (Pixel 10 / touch-enabled).
 2. Navigate to the same flow.
 3. Tell the user: **"Mobile is ready. Try the flow."**
 4. If the user reports a problem:
