@@ -6,6 +6,7 @@ allowed-tools:
   - Bash(git diff*)
   - Bash(git log*)
   - Bash(git add*)
+  - Bash(git commit -m*)
 ---
 
 # Git Commit
