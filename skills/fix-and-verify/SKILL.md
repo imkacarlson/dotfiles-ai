@@ -88,33 +88,48 @@ After approval:
 ## Phase 2: Desktop verification
 
 1. Check if the dev server is running. If not, ask the user to start it in another terminal before continuing.
-2. Open a desktop browser via Playwright MCP tools.
-3. Navigate to the relevant page/flow.
-4. Tell the user: **"Desktop is ready. Try the flow and tell me if it works."**
+2. Launch Playwright codegen targeting the relevant URL, saving output to a temp file:
+   ```
+   npx playwright codegen --output /tmp/fix-verify-recorded.spec.ts <url>
+   ```
+   This opens a real browser + the Playwright Inspector recorder side-by-side.
+3. Tell the user: **"A browser and the Playwright recorder have opened. Perform the flow you want to verify. When you're done, close the browser window."**
+4. Wait for the user to confirm they're done and that the flow works.
 5. If the user reports a problem:
    - Understand the description
    - Iterate on the fix
-   - Re-open desktop and ask again
+   - Re-launch codegen and ask again
 6. When the user confirms it works:
-   - Write a Playwright test in `e2e/` covering the desktop behavior
+   - Read the recorded test from `/tmp/fix-verify-recorded.spec.ts`
+   - Clean up the recorded code:
+     - Wrap in a proper `test.describe` block with a meaningful name referencing the issue
+     - Add/adjust assertions if the recording is light on them
+   - Place the final test in `e2e/` with a descriptive filename
    - Run the new test: `npm run test:e2e -- --project="Desktop Chrome" <test-file>`
-   - If the test fails → debug and fix before continuing
+   - If the test fails → debug, fix, re-run
+   - Remove the temp file: `rm /tmp/fix-verify-recorded.spec.ts`
 
 ---
 
 ## Phase 3: Mobile verification
 
-1. Open a mobile-viewport browser via Playwright MCP (Pixel 10 / touch-enabled).
-2. Navigate to the same flow.
-3. Tell the user: **"Mobile is ready. Try the flow."**
+1. Launch Playwright codegen with mobile viewport:
+   ```
+   npx playwright codegen --device="Pixel 7" --output /tmp/fix-verify-recorded-mobile.spec.ts <url>
+   ```
+   This opens a mobile-viewport browser + the Playwright Inspector recorder side-by-side.
+2. Tell the user: **"A mobile-viewport browser and recorder have opened. Perform the mobile flow. Close the browser when done."**
+3. Wait for the user to confirm they're done and that the flow works.
 4. If the user reports a problem:
    - Iterate on the fix
    - Re-run the desktop test after each change to guard against regressions
-   - Re-open mobile and ask again
+   - Re-launch codegen mobile and ask again
 5. When the user confirms mobile works:
-   - Extend the test file (or write a separate `test.skip(!isMobile, ...)` block) for mobile assertions
+   - Read the recorded mobile test from `/tmp/fix-verify-recorded-mobile.spec.ts`
+   - Merge mobile-specific assertions into the existing test file (or add a separate mobile test block)
    - Run both desktop and mobile tests: `npm run test:e2e`
    - If either fails → loop back to the relevant phase
+   - Remove the temp file: `rm /tmp/fix-verify-recorded-mobile.spec.ts`
 6. Once **both** desktop and mobile tests pass: proceed to Phase 4.
 
 ---
