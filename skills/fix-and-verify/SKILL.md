@@ -85,6 +85,14 @@ After approval:
 
 ---
 
+## Test State Hygiene (Required)
+
+- Regression tests that mutate tracker/page content must restore the document to the exact pre-test state.
+- Capture a baseline snapshot/signature before mutating content, and clean up in a `try/finally` block so cleanup still runs on assertion failures.
+- Add a post-cleanup assertion that the final state matches the baseline when feasible.
+
+---
+
 ## Phase 2: Desktop verification
 
 1. Check if the dev server is running. If not, ask the user to start it in another terminal before continuing.
@@ -104,6 +112,8 @@ After approval:
    - Clean up the recorded code:
      - Wrap in a proper `test.describe` block with a meaningful name referencing the issue
      - Add/adjust assertions if the recording is light on them
+     - Add deterministic cleanup that restores mutated tracker/page content to baseline
+     - Prefer baseline snapshot + `try/finally` cleanup + final baseline-equality assertion
    - Place the final test in `e2e/` with a descriptive filename
    - Run the new test: `npm run test:e2e -- --project="Desktop Chrome" <test-file>`
    - If the test fails → debug, fix, re-run
@@ -127,6 +137,7 @@ After approval:
 5. When the user confirms mobile works:
    - Read the recorded mobile test from `/tmp/fix-verify-recorded-mobile.spec.ts`
    - Merge mobile-specific assertions into the existing test file (or add a separate mobile test block)
+   - Ensure mobile-path mutations also restore content to the original baseline state
    - Run both desktop and mobile tests: `npm run test:e2e`
    - If either fails → loop back to the relevant phase
    - Remove the temp file: `rm /tmp/fix-verify-recorded-mobile.spec.ts`
